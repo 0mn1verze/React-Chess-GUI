@@ -40,7 +40,7 @@ def make_move():
 
     # init Maestro engine
     engine = chess.engine.SimpleEngine.popen_uci(
-        "../engine/Maestro.exe", debug=False)
+        "../engine/Maestro", debug=False)
 
     # search for best move
     if (searchType == "depth"):
