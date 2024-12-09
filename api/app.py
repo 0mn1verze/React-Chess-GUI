@@ -25,6 +25,8 @@ def make_move():
     # extract history
     moves = request.json.get('moves')
 
+    print(request.json)
+
     # init python-chess board object
     board = chess.Board(fen)
 
@@ -38,9 +40,11 @@ def make_move():
             "game_over": True,
         }
 
+
+
     # init Maestro engine
     engine = chess.engine.SimpleEngine.popen_uci(
-        "../engine/Maestro.exe", debug=True)
+        "../engine/Maestro.exe", debug=False)
 
     # search for best move
     if (searchType == "depth"):
