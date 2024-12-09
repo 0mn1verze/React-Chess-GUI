@@ -2,14 +2,14 @@
 
 # import libraries
 import chess
-from flask import Flask, request
+from flask import Flask, request, render_template
 import chess.engine
 import chess.polyglot
+import os
 
 app = Flask(__name__, static_folder='../build', static_url_path='/')
 
 # make move API
-
 
 @app.route("/api/make_move", methods=['POST'])
 def make_move():
@@ -25,8 +25,6 @@ def make_move():
     # extract history
     moves = request.json.get('moves')
 
-    print(request.json)
-
     # init python-chess board object
     board = chess.Board(fen)
 
@@ -39,8 +37,6 @@ def make_move():
         return {
             "game_over": True,
         }
-
-
 
     # init Maestro engine
     engine = chess.engine.SimpleEngine.popen_uci(
@@ -76,4 +72,4 @@ def make_move():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, threaded=True)
+    app.run(debug=False, threaded=True)
