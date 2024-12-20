@@ -13,6 +13,7 @@ COPY --from=build-step /app/build ./build
 RUN mkdir ./engine
 # COPY engine/Maestro.exe ./engine
 COPY engine/Maestro ./engine
+RUN chmod +x ./engine/Maestro
 
 RUN mkdir ./api 
 COPY api/requirements.txt api/app.py ./api
